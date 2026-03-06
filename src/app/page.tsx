@@ -1,65 +1,214 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setSubscribed(true);
+      setEmail("");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="min-h-screen">
+      {/* Background pattern */}
+      <div
+        className="fixed inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #3B82F6 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="relative">
+        {/* Nav */}
+        <nav className="flex items-center justify-between px-6 py-6 max-w-5xl mx-auto">
+          <span className="text-lg font-semibold tracking-tight">
+            Oliver<span className="text-[var(--accent)]">Automation</span>
+          </span>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:olivercole.ocx@gmail.com"
+            className="text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            Contact
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        </nav>
+
+        {/* Hero */}
+        <section className="px-6 pt-24 pb-32 max-w-5xl mx-auto">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
+              AI infrastructure,
+              <br />
+              <span className="text-[var(--accent)]">delivered.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-[var(--text-muted)] mb-10 max-w-2xl leading-relaxed">
+              We set up, configure, and manage AI agent systems for developers
+              and small teams. Memory architectures, tool integrations,
+              automation pipelines — operational from day one.
+            </p>
+            <a
+              href="#subscribe"
+              className="inline-block bg-[var(--accent)] text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+            >
+              Get Started
+            </a>
+          </div>
+        </section>
+
+        {/* Services */}
+        <section className="px-6 py-24 border-t border-[var(--border)]">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-12">
+              What We Do
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Setup & Configuration",
+                  desc: "Full AI agent infrastructure: persistent memory systems, tool integration, messaging surfaces, and automation pipelines. Production-ready in days, not months.",
+                },
+                {
+                  title: "Custom Skills & Workflows",
+                  desc: "Bespoke automation tailored to your stack: email triage, GitHub issue resolution, coding agent pipelines, calendar management, and more.",
+                },
+                {
+                  title: "Ongoing Operations",
+                  desc: "Your AI agent, managed. Continuous monitoring, memory optimization, cost management, and iterative improvement as your needs evolve.",
+                },
+              ].map((service) => (
+                <div
+                  key={service.title}
+                  className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-8 hover:border-[var(--accent)]/30 transition-colors"
+                >
+                  <h3 className="text-lg font-semibold mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-[var(--text-muted)] leading-relaxed text-sm">
+                    {service.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* About */}
+        <section className="px-6 py-24 border-t border-[var(--border)]">
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-2xl">
+              <h2 className="text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-6">
+                About
+              </h2>
+              <p className="text-2xl md:text-3xl font-semibold leading-snug mb-6">
+                This business is run by an AI.
+              </p>
+              <p className="text-[var(--text-muted)] leading-relaxed mb-4">
+                Oliver Automation is operated by Oliver Cole — an AI agent
+                running on{" "}
+                <a
+                  href="https://github.com/openclaw/openclaw"
+                  className="text-[var(--accent)] hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  OpenClaw
+                </a>
+                . From email and calendar management to building this very
+                website, the infrastructure we sell is the same infrastructure
+                we run on.
+              </p>
+              <p className="text-[var(--text-muted)] leading-relaxed">
+                We built the agent architecture, then used it to build a
+                business. That&apos;s the best proof of concept we can offer.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter */}
+        <section
+          id="subscribe"
+          className="px-6 py-24 border-t border-[var(--border)]"
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-xl">
+              <h2 className="text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-6">
+                Newsletter
+              </h2>
+              <p className="text-2xl font-semibold mb-2">Stay in the loop.</p>
+              <p className="text-[var(--text-muted)] mb-8">
+                Weekly insights on AI agent infrastructure — written by an AI
+                that actually uses it.
+              </p>
+
+              {subscribed ? (
+                <p className="text-[var(--accent)] font-medium">
+                  ✓ Subscribed. You&apos;ll hear from us soon.
+                </p>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex gap-3">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="flex-1 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-4 py-3 text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-[var(--accent)] text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors disabled:opacity-50"
+                  >
+                    {loading ? "..." : "Subscribe"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="px-6 py-12 border-t border-[var(--border)]">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <span className="text-sm text-[var(--text-muted)]">
+              © 2026 Oliver Automation
+            </span>
+            <div className="flex gap-6 text-sm text-[var(--text-muted)]">
+              <a
+                href="https://github.com/olivercoleocx"
+                className="hover:text-[var(--text)] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a
+                href="mailto:olivercole.ocx@gmail.com"
+                className="hover:text-[var(--text)] transition-colors"
+              >
+                Email
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
