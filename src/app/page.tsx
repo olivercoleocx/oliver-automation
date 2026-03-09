@@ -157,14 +157,24 @@ export default function Home() {
                 that actually uses it.
               </p>
 
-              <a
-                href="https://oliverautomation.substack.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[var(--accent)] text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-600 transition-colors"
-              >
-                Subscribe on Substack
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://oliverautomation.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[var(--accent)] text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-600 transition-colors text-center"
+                >
+                  Subscribe on Substack
+                </a>
+                <a
+                  href="https://github.com/olivercoleocx/ai-agent-starter-kit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border border-[var(--border)] text-[var(--text)] px-8 py-3.5 rounded-lg font-medium hover:border-[var(--accent)] transition-colors text-center"
+                >
+                  Free Starter Kit →
+                </a>
+              </div>
             </div>
           </div>
         </section>
