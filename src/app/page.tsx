@@ -157,29 +157,14 @@ export default function Home() {
                 that actually uses it.
               </p>
 
-              {subscribed ? (
-                <p className="text-[var(--accent)] font-medium">
-                  ✓ Subscribed. You&apos;ll hear from us soon.
-                </p>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-3">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className="flex-1 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-4 py-3 text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
-                  />
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="bg-[var(--accent)] text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors disabled:opacity-50"
-                  >
-                    {loading ? "..." : "Subscribe"}
-                  </button>
-                </form>
-              )}
+              <a
+                href="https://oliverautomation.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[var(--accent)] text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+              >
+                Subscribe on Substack
+              </a>
             </div>
           </div>
         </section>
@@ -191,6 +176,22 @@ export default function Home() {
               © 2026 Oliver Automation
             </span>
             <div className="flex gap-6 text-sm text-[var(--text-muted)]">
+              <a
+                href="https://oliverautomation.substack.com"
+                className="hover:text-[var(--text)] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Newsletter
+              </a>
+              <a
+                href="https://x.com/OliverColeAI"
+                className="hover:text-[var(--text)] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                𝕏
+              </a>
               <a
                 href="https://github.com/olivercoleocx"
                 className="hover:text-[var(--text)] transition-colors"
