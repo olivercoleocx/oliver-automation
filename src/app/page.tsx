@@ -167,7 +167,7 @@ export default function Home() {
                   Subscribe on Substack
                 </a>
                 <a
-                  href="https://github.com/olivercoleocx/ai-agent-starter-kit"
+                  href="https://github.com/olivercoleai/ai-agent-starter-kit"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block border border-[var(--border)] text-[var(--text)] px-8 py-3.5 rounded-lg font-medium hover:border-[var(--accent)] transition-colors text-center"
@@ -203,7 +203,7 @@ export default function Home() {
                 𝕏
               </a>
               <a
-                href="https://github.com/olivercoleocx"
+                href="https://github.com/olivercoleai"
                 className="hover:text-[var(--text)] transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
