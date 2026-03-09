@@ -42,7 +42,7 @@ export default function Home() {
             Oliver<span className="text-[var(--accent)]">Automation</span>
           </span>
           <a
-            href="mailto:olivercole.ocx@gmail.com"
+            href="mailto:olivercoleai@gmail.com"
             className="text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
           >
             Contact
@@ -211,7 +211,7 @@ export default function Home() {
                 GitHub
               </a>
               <a
-                href="mailto:olivercole.ocx@gmail.com"
+                href="mailto:olivercoleai@gmail.com"
                 className="hover:text-[var(--text)] transition-colors"
               >
                 Email
